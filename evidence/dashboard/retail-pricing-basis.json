@@ -1,0 +1,78 @@
+{
+  "USD": {
+    "kind": "Capacity-only pay-as-you-go estimate, not an invoice",
+    "current_workspace": "FT1 trial; these are hypothetical paid-capacity prices",
+    "sku": "F2",
+    "capacity_units": 2,
+    "currency": "USD",
+    "region": "westcentralus",
+    "region_label": "West Central US",
+    "hours_per_day": 24,
+    "per_cu_hour": 0.2,
+    "capacity_hourly_rate": 0.4,
+    "amounts": {
+      "day": 9.6,
+      "week": 67.2,
+      "month": 288.0,
+      "year": 3504.0
+    },
+    "period_days": {
+      "day": 1,
+      "week": 7,
+      "month": 30,
+      "year": 365
+    },
+    "retrieved_at": "2026-11-04T17:25:04.332318+00:00",
+    "meter_name": "Compute Pool Capacity Usage CU",
+    "meter_id": "f2a33f74-3c1d-5a8d-ac73-0a5762593116",
+    "effective_start_date": "2023-11-01T00:00:00Z",
+    "price_source": "Azure Retail Prices API",
+    "pricing_page": "https://azure.microsoft.com/en-us/pricing/details/microsoft-fabric/",
+    "assumptions": [
+      "Whole-capacity cost; not a measured per-workspace allocation or account invoice.",
+      "One month means 30 days; one year means 365 days. The yearly figure is PAYG, not a reservation quote.",
+      "Charged hours mean capacity provisioned hours, not notebook execution hours. Savings require actual pausing.",
+      "Excludes OneLake storage/transactions, bandwidth, licenses, taxes, overage, and optional on-demand services.",
+      "Regional public retail list prices are not negotiated subscription prices.",
+      "The selected SKU is a pricing scenario, not a validated performance-sizing recommendation."
+    ]
+  },
+  "INR": {
+    "kind": "Capacity-only pay-as-you-go estimate, not an invoice",
+    "current_workspace": "FT1 trial; these are hypothetical paid-capacity prices",
+    "sku": "F2",
+    "capacity_units": 2,
+    "currency": "INR",
+    "region": "westcentralus",
+    "region_label": "West Central US",
+    "hours_per_day": 24,
+    "per_cu_hour": 19.04575,
+    "capacity_hourly_rate": 38.0915,
+    "amounts": {
+      "day": 914.2,
+      "week": 6399.37,
+      "month": 27425.88,
+      "year": 333681.54
+    },
+    "period_days": {
+      "day": 1,
+      "week": 7,
+      "month": 30,
+      "year": 365
+    },
+    "retrieved_at": "2026-11-04T17:38:05.868483+00:00",
+    "meter_name": "Compute Pool Capacity Usage CU",
+    "meter_id": "f2a33f74-3c1d-5a8d-ac73-0a5762593116",
+    "effective_start_date": "2023-11-01T00:00:00Z",
+    "price_source": "Azure Retail Prices API",
+    "pricing_page": "https://azure.microsoft.com/en-us/pricing/details/microsoft-fabric/",
+    "assumptions": [
+      "Whole-capacity cost; not a measured per-workspace allocation or account invoice.",
+      "One month means 30 days; one year means 365 days. The yearly figure is PAYG, not a reservation quote.",
+      "Charged hours mean capacity provisioned hours, not notebook execution hours. Savings require actual pausing.",
+      "Excludes OneLake storage/transactions, bandwidth, licenses, taxes, overage, and optional on-demand services.",
+      "Regional public retail list prices are not negotiated subscription prices.",
+      "The selected SKU is a pricing scenario, not a validated performance-sizing recommendation."
+    ]
+  }
+}

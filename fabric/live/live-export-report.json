@@ -1,0 +1,16 @@
+[
+  {
+    "item": "eventstream",
+    "status": "exported",
+    "parts": 3,
+    "redacted_fields_or_tokens": 0,
+    "connections_require_rebinding": true
+  },
+  {
+    "item": "activator",
+    "status": "exported",
+    "parts": 2,
+    "redacted_fields_or_tokens": 0,
+    "connections_require_rebinding": true
+  }
+]

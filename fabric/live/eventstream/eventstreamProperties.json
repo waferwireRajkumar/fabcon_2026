@@ -1,0 +1,6 @@
+{
+  "retentionTimeInDays": 1,
+  "eventThroughputLevel": "Low",
+  "schemaMode": "None",
+  "maxEventSizeInBytes": 5242880
+}

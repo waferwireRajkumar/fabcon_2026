@@ -1,0 +1,7 @@
+{
+  "scenarios": 450,
+  "period_amounts": 1800,
+  "mismatch_count": 0,
+  "rounding": "Decimal ROUND_HALF_UP",
+  "cost_query_sha256": "ebabe2e22695a703ed250ae892ce68e450e8fe1d3c0753693bf7d14b667ce87b"
+}

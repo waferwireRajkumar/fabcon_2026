@@ -1,0 +1,157 @@
+{
+  "data_label": "SYNTHETIC",
+  "dataset_id": "history-20241104-20261104-35554b99",
+  "as_of_utc": "2026-11-04T14:19:15Z",
+  "columns": [
+    "data_label",
+    "demo_run_id",
+    "event_id",
+    "event_time",
+    "event_type",
+    "revision",
+    "return_id",
+    "return_registered_at",
+    "battery_serial",
+    "product_id",
+    "batch_id",
+    "shipment_id",
+    "originator_type",
+    "originator_id",
+    "submitted_by_type",
+    "submitted_by_id",
+    "receiving_warehouse_id",
+    "country",
+    "reported_reason",
+    "inspection_finding",
+    "return_status",
+    "product_name",
+    "battery_technology",
+    "warranty_months",
+    "factory_id",
+    "distributor_id",
+    "retailer_id",
+    "manufactured_at",
+    "shipped_at",
+    "delivered_at",
+    "invoice_at",
+    "warranty_expires_at",
+    "warranty_status",
+    "resolution_action"
+  ],
+  "event_fields": [
+    "data_label",
+    "demo_run_id",
+    "event_id",
+    "event_time",
+    "event_type",
+    "revision",
+    "return_id",
+    "return_registered_at",
+    "battery_serial",
+    "originator_type",
+    "originator_id",
+    "submitted_by_type",
+    "submitted_by_id",
+    "receiving_warehouse_id",
+    "reported_reason",
+    "inspection_finding",
+    "return_status",
+    "resolution_action"
+  ],
+  "battery_fields": [
+    "data_label",
+    "battery_serial",
+    "product_id",
+    "batch_id",
+    "shipment_id",
+    "factory_id",
+    "retailer_id",
+    "manufactured_at",
+    "invoice_at"
+  ],
+  "shipment_fields": [
+    "data_label",
+    "shipment_id",
+    "product_id",
+    "batch_id",
+    "country",
+    "shipped_at",
+    "delivered_at",
+    "distributor_id"
+  ],
+  "product_fields": [
+    "data_label",
+    "product_id",
+    "product_name",
+    "battery_technology",
+    "warranty_months"
+  ],
+  "category_values": {
+    "event_type": [
+      "InspectionCompleted",
+      "ReturnClosed",
+      "ReturnReceived",
+      "ReturnRegistered"
+    ],
+    "submitted_by_type": [
+      "Distributor",
+      "Retailer",
+      "Warehouse"
+    ],
+    "originator_type": [
+      "Distributor",
+      "EndUser",
+      "Retailer",
+      "Unknown",
+      "Warehouse"
+    ],
+    "return_status": [
+      "Closed",
+      "Inspected",
+      "Received",
+      "Requested"
+    ],
+    "battery_technology": [
+      "LFP",
+      "LeadAcid"
+    ]
+  },
+  "expected": {
+    "products": 8,
+    "batteries": 11693,
+    "shipments": 10347,
+    "bronze_events": 46442,
+    "valid_raw_events": 46439,
+    "quarantined_events": 3,
+    "silver_events": 45618,
+    "exact_replays_removed": 821,
+    "gold_cases": 12000,
+    "gold_sha256": "c061e44de6b4038fb009672bbe10069ecc6193364519594553458b4b887d1ad8",
+    "unknown_origin_cases": 381
+  },
+  "source_files": {
+    "batteries.csv": {
+      "bytes": 2146004,
+      "sha256": "0387b68105ea3e53fa335f0a6580c4afdde1aea5bfa41ad8d13393145c469b94"
+    },
+    "products.csv": {
+      "bytes": 555,
+      "sha256": "adfcde7c1760654a4fb778d98df543ee77a20c41cfddafb23be6b22628f5587a"
+    },
+    "return_events.json": {
+      "bytes": 38031638,
+      "sha256": "f663a7e5b120aec3993d6df353bcfe88c157099375230370df3389bdc8d774b4"
+    },
+    "shipments.csv": {
+      "bytes": 1643621,
+      "sha256": "56b6ab9e27bfd04ebb09e560bd2ce1435713e8414ea8d7ad24b170b70d530e1a"
+    }
+  },
+  "notes": [
+    "Landing contains exactly three CSV files and one JSON document.",
+    "Formatting issues include whitespace, key casing, category casing, and UTC timestamp variants.",
+    "Three explicitly synthetic bad events test timestamp, missing-key, and orphan-key quarantine.",
+    "Unknown original initiators are valid business data, not quarantine errors.",
+    "The reference Gold fingerprint is used for validation only, never as transformation input."
+  ]
+}

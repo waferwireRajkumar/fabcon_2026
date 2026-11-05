@@ -1,0 +1,9 @@
+data_label,product_id,product_name,battery_technology,warranty_months
+ synthetic , syn-la12-7 , 12V 7Ah standby battery , leadacid , 12 
+SYNTHETIC,SYN-LA12-18,12V 18Ah standby battery,LeadAcid,18
+SYNTHETIC,SYN-LA12-65,12V 65Ah stationary battery,LeadAcid,24
+SYNTHETIC,SYN-LA12-100,12V 100Ah deep-cycle battery,LeadAcid,24
+SYNTHETIC,SYN-LFP12-100,12V 100Ah storage battery,LFP,36
+SYNTHETIC,SYN-LFP24-100,24V 100Ah storage battery,LFP,36
+SYNTHETIC,SYN-LFP48-50,48V 50Ah storage module,LFP,36
+SYNTHETIC,SYN-LFP48-100,48V 100Ah storage module,LFP,36

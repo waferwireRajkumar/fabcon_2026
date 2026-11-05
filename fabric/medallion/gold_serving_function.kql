@@ -1,0 +1,12 @@
+.create-or-alter function with (
+        folder='BatteryReturns/Gold',
+        docstring='Only fully validated medallion Gold publications are visible.')
+    ReturnsGoldLatest() {
+        let LatestPublishId = toscalar(ReturnsGoldCommits
+            | where data_label == 'SYNTHETIC'
+            | top 1 by published_at desc
+            | project publish_id);
+        ReturnsGoldRaw
+        | where publish_id == LatestPublishId
+        | project-away publish_id
+    }

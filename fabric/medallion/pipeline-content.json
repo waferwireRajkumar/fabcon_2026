@@ -1,0 +1,145 @@
+{
+  "properties": {
+    "description": "Synthetic battery returns: four OneLake files -> raw Bronze Delta tables -> typed/deduplicated Silver plus quarantine -> reconciled Gold -> Eventhouse. Live Eventstream and Teams alert remain independent.",
+    "activities": [
+      {
+        "name": "01 Load Bronze from 3 CSV and 1 JSON",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.00:30:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 60,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "96372bdd-df8a-4ba8-9c6d-fd79368082ca",
+          "workspaceId": "0660f2dc-333d-445c-8c62-6d15515f7206",
+          "parameters": {
+            "stage": {
+              "value": "bronze",
+              "type": "string"
+            },
+            "execution_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "02 Clean Silver and Quarantine",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "01 Load Bronze from 3 CSV and 1 JSON",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:30:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 60,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "96372bdd-df8a-4ba8-9c6d-fd79368082ca",
+          "workspaceId": "0660f2dc-333d-445c-8c62-6d15515f7206",
+          "parameters": {
+            "stage": {
+              "value": "silver",
+              "type": "string"
+            },
+            "execution_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "03 Build and Validate Gold",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "02 Clean Silver and Quarantine",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:30:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 60,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "96372bdd-df8a-4ba8-9c6d-fd79368082ca",
+          "workspaceId": "0660f2dc-333d-445c-8c62-6d15515f7206",
+          "parameters": {
+            "stage": {
+              "value": "gold",
+              "type": "string"
+            },
+            "execution_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "04 Publish Validated Gold to Eventhouse",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "03 Build and Validate Gold",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:30:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 60,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "96372bdd-df8a-4ba8-9c6d-fd79368082ca",
+          "workspaceId": "0660f2dc-333d-445c-8c62-6d15515f7206",
+          "parameters": {
+            "stage": {
+              "value": "publish",
+              "type": "string"
+            },
+            "execution_id": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      }
+    ],
+    "concurrency": 1
+  }
+}

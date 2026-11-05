@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Battery Returns Intelligence | AI Companion</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="battery-icon" aria-hidden="true">B</span><div><strong>Battery Returns Intelligence</strong><small>FABRIC GOLD &middot; CONVERSATIONAL ANALYTICS</small></div></div>
+    <div class="top-actions"><span class="status-pill">Synthetic demo data</span><a id="fabric-link" target="_blank" rel="noopener noreferrer">Open Fabric dashboard &nearr;</a></div>
+  </header>
+  <main>
+    <section class="intro-grid">
+      <div class="intro">
+        <p class="eyebrow">FROM RETURN TO REASON</p>
+        <h1>Every return has a story.<br><span>Follow the evidence.</span></h1>
+        <p>Explore who initiated a return, what was reported, and what inspection found. Ask the assistant to investigate your validated Gold data.</p>
+        <div class="source-line"><span class="dot"></span> Bronze &rarr; Silver &rarr; Gold &rarr; Eventhouse <span class="muted">| Original Fabric dashboard preserved</span></div>
+      </div>
+      <aside class="cost-card" aria-label="Workspace subscription cost estimate">
+        <div class="section-heading"><h2>Subscription estimate</h2><span class="tag">NOT AN INVOICE</span></div>
+        <div class="cost-inputs">
+          <label>Capacity<select id="cost-sku"><option>F2</option><option>F4</option><option>F8</option><option>F16</option><option>F32</option><option>F64</option><option>F128</option><option>F256</option><option>F512</option></select></label>
+          <label>Currency<select id="cost-currency"><option>USD</option><option>INR</option></select></label>
+          <label>Charged hrs/day<input id="cost-hours" type="number" min="0" max="24" step="1" value="24"></label>
+        </div>
+        <div id="cost-values" class="cost-values" aria-live="polite">Retrieving regional prices...</div>
+        <p id="cost-rate" class="cost-footnote"></p>
+        <details class="cost-details"><summary>Assumptions &amp; exclusions</summary><div id="cost-assumptions"></div></details>
+      </aside>
+    </section>
+    <section class="filter-bar" aria-label="Dashboard filters">
+      <label>Country<select id="country"><option value="">All countries</option></select></label>
+      <label>Registered from<input id="date-from" type="date"></label>
+      <label>Through<input id="date-to" type="date"></label>
+      <button id="apply-filters" class="primary">Apply filters</button><button id="reset-filters">Reset</button>
+      <span id="data-status" class="muted" role="status">Loading validated Gold data...</span>
+    </section>
+    <div id="dashboard-error" class="error-banner" hidden role="alert"></div>
+    <section id="metrics" class="metric-grid" aria-label="Gold metrics"></section>
+    <section class="chart-grid">
+      <article class="card"><div class="section-heading"><h2>Original initiator</h2><span class="muted">Not the submitting party</span></div><div id="initiators" class="bars"></div></article>
+      <article class="card"><div class="section-heading"><h2>Reported reason</h2><span class="muted">Not a proven cause</span></div><div id="reasons" class="bars"></div></article>
+      <article class="card"><div class="section-heading"><h2>Returns over time</h2><span class="muted">UTC &middot; Boundary months can be partial</span></div><div id="trend"></div></article>
+      <article class="card"><div class="section-heading"><h2>Inspection findings</h2><span class="muted">Recorded findings only</span></div><div id="findings" class="bars"></div></article>
+    </section>
+    <article class="card"><div class="section-heading"><h2>Batch return counts</h2><span class="muted">Top 30 by return cases &middot; not defect rates</span></div><div id="batches" class="table-wrap"></div></article>
+    <article class="card"><div class="section-heading"><h2>Gold traceability</h2><span class="muted">Latest 30 matching cases &middot; one current row per return</span></div><div id="cases" class="table-wrap"></div></article>
+    <article class="card lineage-card"><div class="section-heading"><h2>Bronze to Gold lineage</h2><span class="muted">Whole published dataset, independent of filters</span></div><div id="lineage" class="lineage-flow"></div></article>
+    <footer>All records and business distributions are synthetic. Counts are not industry defect rates. Local single-presenter demo using the presenter's Azure and Copilot access.</footer>
+  </main>
+  <button id="chat-launcher" class="chat-launcher" aria-expanded="false" aria-controls="chat-panel"><span class="sparkle" aria-hidden="true">&#10022;</span> Ask Battery AI</button>
+  <aside id="chat-panel" class="chat-panel" hidden aria-label="Battery Returns AI assistant">
+    <header class="chat-header"><div><strong><span aria-hidden="true">&#10022;</span> Battery Returns Assistant</strong><small>Gold-grounded answers &middot; read-only</small></div><div><button id="new-chat" title="Start a new conversation" aria-label="Start a new conversation">New</button><button id="close-chat" aria-label="Close chat">&times;</button></div></header>
+    <div id="chat-messages" class="chat-messages" role="log" aria-live="polite">
+      <div class="welcome"><span class="welcome-icon" aria-hidden="true">&#10022;</span><h2>Ask a better question.<br>Find a clearer answer.</h2><p>I can query your Gold data, compare patterns, and show supporting evidence. I won't invent a root cause.</p></div>
+      <div class="suggestions">
+        <button data-prompt="How many return cases are there, and how many have an unknown original initiator?">Give me a quick overview</button>
+        <button data-prompt="Which five batches have the most return cases? Show supporting counts.">Find the top returned batches</button>
+        <button data-prompt="Compare reported complaints with inspection findings. What can we actually conclude?">Compare complaints vs findings</button>
+        <button data-prompt="Explain how Bronze becomes Silver and Gold, including the actual counts.">Explain the pipeline lineage</button>
+      </div>
+    </div>
+    <div id="chat-activity" class="chat-activity" role="status"></div>
+    <form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">Your question</label><textarea id="chat-input" placeholder="Ask about returns, batches, findings..." rows="2" maxlength="5000"></textarea><button id="send-chat" class="primary" type="submit" aria-label="Send question">Send &uarr;</button></form>
+    <p class="chat-note">Synthetic data &middot; Review AI answers &middot; Uses your Copilot allowance</p>
+  </aside>
+</body>
+</html>

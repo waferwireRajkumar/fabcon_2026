@@ -1,0 +1,945 @@
+{
+  "schema_version": "52",
+  "title": "Battery Returns Intelligence - Follow the Evidence",
+  "autoRefresh": {
+    "enabled": true,
+    "defaultInterval": "30s",
+    "minInterval": "30s"
+  },
+  "baseQueries": [],
+  "parameters": [
+    {
+      "id": "6b22c3cf-39f8-5257-bafa-9a86a2721acc",
+      "displayName": "Country",
+      "description": "Destination country; All includes the complete committed Gold publication.",
+      "kind": "string",
+      "selectionType": "array",
+      "variableName": "_countries",
+      "showOnPages": {
+        "kind": "all"
+      },
+      "includeAllOption": true,
+      "allIsNull": true,
+      "defaultValue": {
+        "kind": "all"
+      },
+      "dataSource": {
+        "kind": "query",
+        "autoReset": true,
+        "queryRef": {
+          "kind": "query",
+          "queryId": "bb85e98e-f549-5cc1-ac42-8e41046bd9b1"
+        },
+        "columns": {
+          "value": "country",
+          "label": "country"
+        }
+      }
+    },
+    {
+      "id": "52ba3032-6bd1-5844-980c-8d5276a8b81d",
+      "displayName": "Registered (UTC)",
+      "description": "Original return registration timestamps, not lifecycle-update time.",
+      "kind": "duration",
+      "showOnPages": {
+        "kind": "all"
+      },
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "fixed",
+        "start": 1730678400000,
+        "end": 1793836799999
+      }
+    },
+    {
+      "id": "d44395e2-8f23-5d6e-b065-53b82191137a",
+      "displayName": "Paid capacity scenario",
+      "description": "Pricing scenario only, not a capacity-sizing recommendation; does not provision resources.",
+      "kind": "string",
+      "variableName": "_capacitySku",
+      "selectionType": "scalar",
+      "showOnPages": {
+        "kind": "all"
+      },
+      "includeAllOption": false,
+      "defaultValue": {
+        "kind": "value",
+        "value": "F2"
+      },
+      "dataSource": {
+        "kind": "static",
+        "values": [
+          {
+            "value": "F2",
+            "displayText": "F2"
+          },
+          {
+            "value": "F4",
+            "displayText": "F4"
+          },
+          {
+            "value": "F8",
+            "displayText": "F8"
+          },
+          {
+            "value": "F16",
+            "displayText": "F16"
+          },
+          {
+            "value": "F32",
+            "displayText": "F32"
+          },
+          {
+            "value": "F64",
+            "displayText": "F64"
+          },
+          {
+            "value": "F128",
+            "displayText": "F128"
+          },
+          {
+            "value": "F256",
+            "displayText": "F256"
+          },
+          {
+            "value": "F512",
+            "displayText": "F512"
+          }
+        ]
+      }
+    },
+    {
+      "id": "0229596c-1bf4-509c-a093-b21d5b2d91e5",
+      "displayName": "Cost currency",
+      "description": "Regional retail list currency, not the actual account invoice.",
+      "kind": "string",
+      "variableName": "_billingCurrency",
+      "selectionType": "scalar",
+      "showOnPages": {
+        "kind": "all"
+      },
+      "includeAllOption": false,
+      "defaultValue": {
+        "kind": "value",
+        "value": "USD"
+      },
+      "dataSource": {
+        "kind": "static",
+        "values": [
+          {
+            "value": "USD",
+            "displayText": "USD"
+          },
+          {
+            "value": "INR",
+            "displayText": "INR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "50ebad31-706f-5d37-b2b8-1c785e4efc9f",
+      "displayName": "Charged hrs/day",
+      "description": "Provisioned capacity hours per day, from 0 to 24. This control does not pause capacity.",
+      "kind": "int",
+      "variableName": "_chargedHours",
+      "selectionType": "scalar",
+      "showOnPages": {
+        "kind": "all"
+      },
+      "includeAllOption": false,
+      "defaultValue": {
+        "kind": "value",
+        "value": 24
+      },
+      "dataSource": {
+        "kind": "static",
+        "values": [
+          {
+            "value": 0,
+            "displayText": "0"
+          },
+          {
+            "value": 1,
+            "displayText": "1"
+          },
+          {
+            "value": 2,
+            "displayText": "2"
+          },
+          {
+            "value": 3,
+            "displayText": "3"
+          },
+          {
+            "value": 4,
+            "displayText": "4"
+          },
+          {
+            "value": 5,
+            "displayText": "5"
+          },
+          {
+            "value": 6,
+            "displayText": "6"
+          },
+          {
+            "value": 7,
+            "displayText": "7"
+          },
+          {
+            "value": 8,
+            "displayText": "8"
+          },
+          {
+            "value": 9,
+            "displayText": "9"
+          },
+          {
+            "value": 10,
+            "displayText": "10"
+          },
+          {
+            "value": 11,
+            "displayText": "11"
+          },
+          {
+            "value": 12,
+            "displayText": "12"
+          },
+          {
+            "value": 13,
+            "displayText": "13"
+          },
+          {
+            "value": 14,
+            "displayText": "14"
+          },
+          {
+            "value": 15,
+            "displayText": "15"
+          },
+          {
+            "value": 16,
+            "displayText": "16"
+          },
+          {
+            "value": 17,
+            "displayText": "17"
+          },
+          {
+            "value": 18,
+            "displayText": "18"
+          },
+          {
+            "value": 19,
+            "displayText": "19"
+          },
+          {
+            "value": 20,
+            "displayText": "20"
+          },
+          {
+            "value": 21,
+            "displayText": "21"
+          },
+          {
+            "value": 22,
+            "displayText": "22"
+          },
+          {
+            "value": 23,
+            "displayText": "23"
+          },
+          {
+            "value": 24,
+            "displayText": "24"
+          }
+        ]
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "c828be47-aa72-4fc6-bc74-7d24110b1f93",
+      "name": "BatteryReturnsEH",
+      "scopeId": "kusto-trident",
+      "kind": "kusto-trident",
+      "clusterUri": "https://trd-x6s8dxpyykghc2cybq.z6.kusto.fabric.microsoft.com",
+      "database": "c688ad4f-786d-46a3-a0b7-400177d2871f",
+      "workspace": "0660f2dc-333d-445c-8c62-6d15515f7206"
+    }
+  ],
+  "pages": [
+    {
+      "id": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "name": "Gold intelligence and subscription estimate"
+    }
+  ],
+  "queries": [
+    {
+      "id": "bb85e98e-f549-5cc1-ac42-8e41046bd9b1",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      },
+      "text": "ReturnsGoldLatest() | distinct country | order by country asc",
+      "usedVariables": []
+    },
+    {
+      "id": "55de6344-e01f-5458-b19b-4aa985faf0a5",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      },
+      "text": "let Rates = datatable(Currency:string, RatePerCUHour:decimal, CheckedAt:datetime)[\n\"USD\", 0.2, datetime(2026-11-04T17:25:04.332318+00:00),\n\"INR\", 19.04575, datetime(2026-11-04T17:38:05.868483+00:00)\n];\nlet SelectedRate = toscalar(Rates | where Currency == _billingCurrency | project RatePerCUHour);\nlet CapacityUnits = toint(substring(_capacitySku, 1));\nlet ValidInputs = _chargedHours between (0 .. 24) and _capacitySku in (\"F2\", \"F4\", \"F8\", \"F16\", \"F32\", \"F64\", \"F128\", \"F256\", \"F512\");\ndatatable(SortOrder:int, Period:string, Days:int)[\n1, \"1 day\", 1,\n2, \"1 week (7 days)\", 7,\n3, \"1 month (30 days)\", 30,\n4, \"1 year (365 days)\", 365]\n| extend Currency=_billingCurrency,\n    EstimatedCost=iff(ValidInputs, toreal(tolong(SelectedRate * CapacityUnits * _chargedHours * Days * decimal(100) + decimal(0.5))) / 100.0, real(null))\n| order by SortOrder asc\n| project Period, Currency, EstimatedCost",
+      "usedVariables": [
+        "_capacitySku",
+        "_billingCurrency",
+        "_chargedHours"
+      ]
+    },
+    {
+      "id": "a173c756-7c01-4c09-96e7-6f75e9cc941a",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize ReturnCases=count()",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "fd1f8deb-900a-4e02-b460-1a89d2380a24",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize UnknownOrigins=countif(originator_type == 'Unknown' or isempty(originator_id))",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "8b990a96-32e5-5595-be97-0be5ad6d8eb0",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      },
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize DistinctBatteries=count_distinct(battery_serial)",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ]
+    },
+    {
+      "id": "25f1a2a3-adf9-5cd4-9e71-a5c612b578bb",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      },
+      "text": "ReturnsGoldCommits | where data_label == 'SYNTHETIC' | top 1 by published_at desc | project ReplaysRemoved=replays_removed",
+      "usedVariables": []
+    },
+    {
+      "id": "cb0f0eee-63dd-45c5-af4e-4a0c59a82fa2",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize ReturnCases=count() by originator_type | order by ReturnCases desc",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "a284f113-2f3a-440d-a503-5abeea7f8581",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize ReturnCases=count() by reported_reason | order by ReturnCases desc",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "ca440da5-7397-4123-88ee-5c76bc226cd4",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize ReturnCases=count() by inspection_finding | order by ReturnCases desc",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "28041b15-0e1d-53f3-ae0d-11929ffbf870",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      },
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases | summarize ReturnCases=count() by RegistrationMonth=startofmonth(return_registered_at) | order by RegistrationMonth asc",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ]
+    },
+    {
+      "id": "55261795-b145-4df2-99d6-1ecc59daf3ed",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases\n| summarize ReturnCases=count(), DistinctBatteries=count_distinct(battery_serial),\n    FirstReturn=min(return_registered_at), LastReturn=max(return_registered_at) by batch_id, product_id\n| order by ReturnCases desc, batch_id asc",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "766b6468-01ef-48bb-8d95-01b5b901f5bc",
+      "text": "let GoldCases = ReturnsGoldLatest()\n| where return_registered_at between (_startTime .. _endTime)\n| where isempty(_countries) or country in (_countries);\nGoldCases\n| project return_id, battery_serial, product_id, batch_id, country, originator_type, originator_id,\n    submitted_by_type, submitted_by_id, receiving_warehouse_id, reported_reason, inspection_finding,\n    return_status, revision, return_registered_at, warranty_status, resolution_action\n| order by return_registered_at desc, return_id desc",
+      "usedVariables": [
+        "_countries",
+        "_startTime",
+        "_endTime"
+      ],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    },
+    {
+      "id": "d7a61524-e4e8-4804-a580-e46bb20dc846",
+      "text": "let Coverage = ReturnsGoldLatest()\n| summarize ReturnCases=count(), FirstReturn=min(return_registered_at), LastReturn=max(return_registered_at)\n| extend JoinKey=1;\nReturnsGoldCommits\n| where data_label == \"SYNTHETIC\"\n| top 1 by published_at desc\n| extend JoinKey=1\n| join kind=inner Coverage on JoinKey\n| project ReturnCases, FirstReturn, LastReturn,\n    BronzeEvents=bronze_events, QuarantinedEvents=quarantined_events,\n    ValidRawEvents=valid_raw_events, SilverEvents=silver_events,\n    ReplayRows=replays_removed, GoldCases=gold_cases, PublishedByRunId=pipeline_run_id",
+      "usedVariables": [],
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "c828be47-aa72-4fc6-bc74-7d24110b1f93"
+      }
+    }
+  ],
+  "tiles": [
+    {
+      "id": "4a1fb0f3-6ed5-575c-a73d-00aff31bfbe9",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "title": "Battery Returns Intelligence",
+      "description": "",
+      "visualType": "markdownCard",
+      "visualOptions": {},
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 16,
+        "height": 4
+      },
+      "markdownText": "# Battery Returns Intelligence\n## Every return has a story. Follow the evidence.\nExplore **who initiated a return**, **what was reported**, and **what inspection found**.\n\n**SYNTHETIC DEMO DATA** | Bronze \u2192 Silver \u2192 Gold \u2192 Eventhouse\n\nThe original Fabric dashboard now uses native filters and visuals. The custom AI chat remains in the separate companion app.",
+      "hideTitle": true
+    },
+    {
+      "id": "a7449fe2-b5b8-5061-9766-7e8dad424fad",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "title": "Paid capacity estimate - NOT AN INVOICE",
+      "description": "West Central US regional retail PAYG. Whole-capacity cost; current workspace is FT1 trial. Month=30 days; year=365 days, not a reservation quote. Rates are the visible dated snapshot.",
+      "visualType": "table",
+      "visualOptions": {},
+      "layout": {
+        "x": 16,
+        "y": 0,
+        "width": 8,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "55de6344-e01f-5458-b19b-4aa985faf0a5"
+      }
+    },
+    {
+      "id": "c44c83bd-df9a-5241-b282-fce7cb520f88",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "title": "Filters and estimate assumptions",
+      "description": "",
+      "visualType": "markdownCard",
+      "visualOptions": {},
+      "layout": {
+        "x": 0,
+        "y": 4,
+        "width": 24,
+        "height": 3
+      },
+      "markdownText": "**Dashboard controls:** Country and Registered (UTC) filter the Gold case visuals. Paid capacity scenario, Cost currency, and Charged hrs/day affect only the estimate.\n\n**Estimate basis:** West Central US retail PAYG, prices checked **2026-11-04**; USD **0.2** / INR **19.04575** per CU-hour. **Current workspace: FT1 trial.** No subscription or resource is changed by these controls.\n\n**Excluded:** OneLake storage/transactions, bandwidth, licenses, taxes, overage, and optional services. These are whole-capacity estimates, not measured workspace bills or sizing recommendations. **Rates are a dated snapshot, not automatically refreshed.** [Official Fabric pricing](https://azure.microsoft.com/en-us/pricing/details/microsoft-fabric/).",
+      "hideTitle": true
+    },
+    {
+      "id": "58e84eba-a8ba-4f02-80ed-f8cad91a130d",
+      "title": "Gold return cases",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a173c756-7c01-4c09-96e7-6f75e9cc941a"
+      },
+      "layout": {
+        "x": 0,
+        "y": 7,
+        "width": 6,
+        "height": 3
+      },
+      "visualType": "card",
+      "visualOptions": {
+        "multiStat__valueColumn": "ReturnCases"
+      },
+      "description": ""
+    },
+    {
+      "id": "ef98856b-bbdd-47e7-876e-50b4d09ffebd",
+      "title": "Unknown original initiators",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "fd1f8deb-900a-4e02-b460-1a89d2380a24"
+      },
+      "layout": {
+        "x": 6,
+        "y": 7,
+        "width": 6,
+        "height": 3
+      },
+      "visualType": "card",
+      "visualOptions": {
+        "multiStat__valueColumn": "UnknownOrigins"
+      },
+      "description": ""
+    },
+    {
+      "id": "3601c42e-b00a-5548-9df7-d944cd29d84c",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "title": "Distinct returned batteries",
+      "description": "",
+      "visualType": "card",
+      "visualOptions": {
+        "multiStat__valueColumn": "DistinctBatteries"
+      },
+      "layout": {
+        "x": 12,
+        "y": 7,
+        "width": 6,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "8b990a96-32e5-5595-be97-0be5ad6d8eb0"
+      }
+    },
+    {
+      "id": "9de9b45d-135a-5348-83a0-9ded7f6bc106",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "title": "Replays removed - whole source snapshot",
+      "description": "",
+      "visualType": "card",
+      "visualOptions": {
+        "multiStat__valueColumn": "ReplaysRemoved"
+      },
+      "layout": {
+        "x": 18,
+        "y": 7,
+        "width": 6,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "25f1a2a3-adf9-5cd4-9e71-a5c612b578bb"
+      }
+    },
+    {
+      "id": "774787d8-e6f3-413d-89a2-1443dc387a87",
+      "title": "Original initiator - not the submitting party",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "cb0f0eee-63dd-45c5-af4e-4a0c59a82fa2"
+      },
+      "layout": {
+        "x": 0,
+        "y": 10,
+        "width": 12,
+        "height": 7
+      },
+      "visualType": "bar",
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": 0,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": true,
+        "legendLocation": "right",
+        "xColumnTitle": "",
+        "xColumn": "originator_type",
+        "yColumns": [
+          "ReturnCases"
+        ],
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 100
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        },
+        "colorRulesDisabled": false,
+        "colorRules": [
+          {
+            "id": "d191f373-df1b-52e2-9179-fda0b5ed0bcc",
+            "ruleType": "colorByCondition",
+            "ruleName": "Return count accent, not a health threshold",
+            "applyTo": "cells",
+            "visualType": "bar",
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "applyToColumn": "ReturnCases",
+            "conditions": [
+              {
+                "column": "ReturnCases",
+                "operator": ">=",
+                "values": [
+                  "0"
+                ]
+              }
+            ],
+            "color": "green",
+            "tag": "",
+            "icon": null,
+            "hideText": false
+          }
+        ]
+      },
+      "description": ""
+    },
+    {
+      "id": "e6d14f75-989d-48f4-85f5-df9dc7098577",
+      "title": "Reported reason - not a proven cause",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a284f113-2f3a-440d-a503-5abeea7f8581"
+      },
+      "layout": {
+        "x": 12,
+        "y": 10,
+        "width": 12,
+        "height": 7
+      },
+      "visualType": "bar",
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": 0,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": true,
+        "legendLocation": "right",
+        "xColumnTitle": "",
+        "xColumn": "reported_reason",
+        "yColumns": [
+          "ReturnCases"
+        ],
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 100
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        },
+        "colorRulesDisabled": false,
+        "colorRules": [
+          {
+            "id": "16337210-3d60-5639-b14a-7d3594eb2dfc",
+            "ruleType": "colorByCondition",
+            "ruleName": "Return count accent, not a health threshold",
+            "applyTo": "cells",
+            "visualType": "bar",
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "applyToColumn": "ReturnCases",
+            "conditions": [
+              {
+                "column": "ReturnCases",
+                "operator": ">=",
+                "values": [
+                  "0"
+                ]
+              }
+            ],
+            "color": "green",
+            "tag": "",
+            "icon": null,
+            "hideText": false
+          }
+        ]
+      },
+      "description": ""
+    },
+    {
+      "id": "a9f7c921-da4f-4efc-af7f-c4b461a60216",
+      "title": "Inspection findings - recorded evidence only",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "ca440da5-7397-4123-88ee-5c76bc226cd4"
+      },
+      "layout": {
+        "x": 12,
+        "y": 17,
+        "width": 12,
+        "height": 7
+      },
+      "visualType": "bar",
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": 0,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": true,
+        "legendLocation": "right",
+        "xColumnTitle": "",
+        "xColumn": "inspection_finding",
+        "yColumns": [
+          "ReturnCases"
+        ],
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 100
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        },
+        "colorRulesDisabled": false,
+        "colorRules": [
+          {
+            "id": "d6c5166a-710e-5e65-8be7-2be1a17a3123",
+            "ruleType": "colorByCondition",
+            "ruleName": "Return count accent, not a health threshold",
+            "applyTo": "cells",
+            "visualType": "bar",
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "applyToColumn": "ReturnCases",
+            "conditions": [
+              {
+                "column": "ReturnCases",
+                "operator": ">=",
+                "values": [
+                  "0"
+                ]
+              }
+            ],
+            "color": "green",
+            "tag": "",
+            "icon": null,
+            "hideText": false
+          }
+        ]
+      },
+      "description": ""
+    },
+    {
+      "id": "f8c472a0-5845-5ebb-b267-294706288f02",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "title": "Returns over time - boundary months may be partial",
+      "description": "",
+      "visualType": "area",
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": 0,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": true,
+        "legendLocation": "right",
+        "xColumnTitle": "Registration month (UTC); boundary months can be partial",
+        "xColumn": "RegistrationMonth",
+        "yColumns": [
+          "ReturnCases"
+        ],
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 100
+        },
+        "dataPointsTooltip": {
+          "all": false,
+          "limit": 1
+        },
+        "colorRulesDisabled": false,
+        "colorRules": [
+          {
+            "id": "b7838894-8610-5fb9-8641-c1f4d285ef36",
+            "ruleType": "colorByCondition",
+            "ruleName": "Return count accent, not a health threshold",
+            "applyTo": "cells",
+            "visualType": "area",
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "applyToColumn": "ReturnCases",
+            "conditions": [
+              {
+                "column": "ReturnCases",
+                "operator": ">=",
+                "values": [
+                  "0"
+                ]
+              }
+            ],
+            "color": "green",
+            "tag": "",
+            "icon": null,
+            "hideText": false
+          }
+        ]
+      },
+      "layout": {
+        "x": 0,
+        "y": 17,
+        "width": 12,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "28041b15-0e1d-53f3-ae0d-11929ffbf870"
+      }
+    },
+    {
+      "id": "cf8d5804-7de7-48de-b7bc-cad488b243a3",
+      "title": "Batch return counts - not defect rates",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "55261795-b145-4df2-99d6-1ecc59daf3ed"
+      },
+      "layout": {
+        "x": 0,
+        "y": 24,
+        "width": 24,
+        "height": 8
+      },
+      "visualType": "table",
+      "visualOptions": {},
+      "description": "All matching batches are retained. Units sold are not available, so counts are not defect rates."
+    },
+    {
+      "id": "ad2f9c9c-cca1-4b1a-907c-5e789b226864",
+      "title": "Gold traceability - all matching return cases",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "766b6468-01ef-48bb-8d95-01b5b901f5bc"
+      },
+      "layout": {
+        "x": 0,
+        "y": 32,
+        "width": 24,
+        "height": 9
+      },
+      "visualType": "table",
+      "visualOptions": {},
+      "description": "One highest-revision row per return ID; repeated returns for a battery remain separate cases."
+    },
+    {
+      "id": "ae72988b-b82d-4df3-a75c-535f191587d9",
+      "title": "Bronze to Gold lineage - whole publication, independent of filters",
+      "pageId": "9e8c4bf7-d045-4518-a582-4621e05cdc0b",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d7a61524-e4e8-4804-a580-e46bb20dc846"
+      },
+      "layout": {
+        "x": 0,
+        "y": 41,
+        "width": 24,
+        "height": 4
+      },
+      "visualType": "table",
+      "visualOptions": {},
+      "description": ""
+    }
+  ]
+}

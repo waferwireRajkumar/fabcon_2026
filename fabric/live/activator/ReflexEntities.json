@@ -1,0 +1,173 @@
+[
+  {
+    "uniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa",
+    "payload": {
+      "name": "Battery returns",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "6389af70-f071-4d94-896e-460ff348484d",
+    "payload": {
+      "name": "Current distinct battery counts by run and batch",
+      "runSettings": {
+        "isStopped": false,
+        "executionIntervalInSeconds": 60
+      },
+      "query": {
+        "queryString": "BatchSignals()\n| project incident_key, demo_run_id, batch_id, affected_batteries"
+      },
+      "eventhouseItem": {
+        "itemId": "c688ad4f-786d-46a3-a0b7-400177d2871f",
+        "workspaceId": "0660f2dc-333d-445c-8c62-6d15515f7206",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "0660f2dc-333d-445c-8c62-6d15515f7206",
+        "measureName": "",
+        "querySetId": "",
+        "queryId": ""
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "c47fcc9d-315e-4c1d-9d4c-e78ef5406bd3",
+    "payload": {
+      "name": "Batch signal snapshots",
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\": \"SourceEvent\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"SourceEventStep\", \"id\": \"db8d305c-21a9-4575-afe6-cce5c73b27d3\", \"rows\": [{\"name\": \"SourceSelector\", \"kind\": \"SourceReference\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"6389af70-f071-4d94-896e-460ff348484d\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9",
+    "payload": {
+      "name": "Batch investigation",
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Object"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "2286cf69-7c6d-4f0b-a035-e696c353404e",
+    "payload": {
+      "name": "Incident key (run + batch)",
+      "parentObject": {
+        "targetUniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\": \"IdentityPartAttribute\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"IdPartStep\", \"id\": \"c5a311b9-001e-40c7-bb51-89d48043d4d0\", \"rows\": [{\"name\": \"TypeAssertion\", \"kind\": \"TypeAssertion\", \"arguments\": [{\"name\": \"op\", \"type\": \"string\", \"value\": \"Text\"}, {\"name\": \"format\", \"type\": \"string\", \"value\": \"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "bf920b05-d1d7-4687-a103-0be1dbd382c1",
+    "payload": {
+      "name": "Signals by investigation identity",
+      "parentObject": {
+        "targetUniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\": \"SplitEvent\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"SplitEventStep\", \"id\": \"a1a1b998-ee5c-48c2-bee8-40656d3a3800\", \"rows\": [{\"name\": \"EventSelector\", \"kind\": \"Event\", \"arguments\": [{\"name\": \"event\", \"kind\": \"EventReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"c47fcc9d-315e-4c1d-9d4c-e78ef5406bd3\"}]}]}, {\"name\": \"FieldIdMapping\", \"kind\": \"FieldIdMapping\", \"arguments\": [{\"name\": \"fieldName\", \"type\": \"string\", \"value\": \"incident_key\"}, {\"name\": \"idPart\", \"kind\": \"AttributeReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"2286cf69-7c6d-4f0b-a035-e696c353404e\"}]}]}, {\"name\": \"SplitEventOptions\", \"kind\": \"EventOptions\", \"arguments\": [{\"name\": \"isAuthoritative\", \"type\": \"boolean\", \"value\": true}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "e99ec9c8-d7cf-4d50-921d-58709ab70780",
+    "payload": {
+      "name": "affected_batteries",
+      "parentObject": {
+        "targetUniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\": \"BasicEventAttribute\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"EventSelectStep\", \"id\": \"2b636ecd-0687-41ad-b4bf-c73b237a4ae5\", \"rows\": [{\"name\": \"EventSelector\", \"kind\": \"Event\", \"arguments\": [{\"name\": \"event\", \"kind\": \"EventReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"bf920b05-d1d7-4687-a103-0be1dbd382c1\"}]}]}, {\"name\": \"EventFieldSelector\", \"kind\": \"EventField\", \"arguments\": [{\"name\": \"fieldName\", \"type\": \"string\", \"value\": \"affected_batteries\"}]}]}, {\"name\": \"EventComputeStep\", \"id\": \"db53d0ea-ffe8-4053-8275-6a54ad6f017d\", \"rows\": [{\"name\": \"TypeAssertion\", \"kind\": \"TypeAssertion\", \"arguments\": [{\"name\": \"op\", \"type\": \"string\", \"value\": \"Number\"}, {\"name\": \"format\", \"type\": \"string\", \"value\": \"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "1ca923b9-c970-4951-9be0-705e09ccca24",
+    "payload": {
+      "name": "batch_id",
+      "parentObject": {
+        "targetUniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\": \"BasicEventAttribute\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"EventSelectStep\", \"id\": \"05f21cf1-a9f6-4d35-9f07-10501212a69c\", \"rows\": [{\"name\": \"EventSelector\", \"kind\": \"Event\", \"arguments\": [{\"name\": \"event\", \"kind\": \"EventReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"bf920b05-d1d7-4687-a103-0be1dbd382c1\"}]}]}, {\"name\": \"EventFieldSelector\", \"kind\": \"EventField\", \"arguments\": [{\"name\": \"fieldName\", \"type\": \"string\", \"value\": \"batch_id\"}]}]}, {\"name\": \"EventComputeStep\", \"id\": \"cfb0f76d-9615-4b1f-833d-da6fb7b6275f\", \"rows\": [{\"name\": \"TypeAssertion\", \"kind\": \"TypeAssertion\", \"arguments\": [{\"name\": \"op\", \"type\": \"string\", \"value\": \"Text\"}, {\"name\": \"format\", \"type\": \"string\", \"value\": \"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "1d033e4d-b22c-4788-be93-85b66b762098",
+    "payload": {
+      "name": "demo_run_id",
+      "parentObject": {
+        "targetUniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\": \"BasicEventAttribute\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"EventSelectStep\", \"id\": \"7e19af3d-4200-4565-95b1-b1f43bd6d045\", \"rows\": [{\"name\": \"EventSelector\", \"kind\": \"Event\", \"arguments\": [{\"name\": \"event\", \"kind\": \"EventReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"bf920b05-d1d7-4687-a103-0be1dbd382c1\"}]}]}, {\"name\": \"EventFieldSelector\", \"kind\": \"EventField\", \"arguments\": [{\"name\": \"fieldName\", \"type\": \"string\", \"value\": \"demo_run_id\"}]}]}, {\"name\": \"EventComputeStep\", \"id\": \"cf3233bf-59f5-4459-b692-8eec3c3ac027\", \"rows\": [{\"name\": \"TypeAssertion\", \"kind\": \"TypeAssertion\", \"arguments\": [{\"name\": \"op\", \"type\": \"string\", \"value\": \"Text\"}, {\"name\": \"format\", \"type\": \"string\", \"value\": \"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "329acdb3-4162-44d3-91b1-43f2fe3ec861",
+    "payload": {
+      "name": "Investigate when a batch reaches 3 returned batteries",
+      "description": "Synthetic hackathon demo; a signal for investigation, not a proven defect.",
+      "parentObject": {
+        "targetUniqueIdentifier": "dc1c7e5b-0ac3-40ee-9a34-c7296ceb6db9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c19a44c2-1b6d-4455-bb60-6b9710afa8fa"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\": \"AttributeTrigger\", \"templateVersion\": \"1.2.4\", \"steps\": [{\"name\": \"ScalarSelectStep\", \"id\": \"31d6ab7a-dbd7-4bc6-a9a4-739a91616c48\", \"rows\": [{\"name\": \"AttributeSelector\", \"kind\": \"Attribute\", \"arguments\": [{\"name\": \"attribute\", \"kind\": \"AttributeReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"e99ec9c8-d7cf-4d50-921d-58709ab70780\"}]}]}]}, {\"name\": \"ScalarDetectStep\", \"id\": \"7958d440-51c9-42e9-8866-5b1d7df72c70\", \"rows\": [{\"name\": \"NumberBecomes\", \"kind\": \"NumberBecomes\", \"arguments\": [{\"name\": \"op\", \"type\": \"string\", \"value\": \"BecomesGreaterThan\"}, {\"name\": \"value\", \"type\": \"number\", \"value\": 2}]}]}, {\"name\": \"ActStep\", \"id\": \"687a0ec2-6122-4cda-9fa3-0f490a270da3\", \"rows\": [{\"name\": \"TeamsBinding\", \"kind\": \"TeamsMessage\", \"arguments\": [{\"name\": \"messageLocale\", \"type\": \"string\", \"value\": \"\"}, {\"name\": \"recipients\", \"type\": \"array\", \"values\": [{\"type\": \"string\", \"value\": \"v-rajkumar6@microsoft.com\"}]}, {\"name\": \"headline\", \"type\": \"array\", \"values\": [{\"type\": \"string\", \"value\": \"SYNTHETIC DEMO - battery return cluster\"}]}, {\"name\": \"optionalMessage\", \"type\": \"array\", \"values\": [{\"type\": \"string\", \"value\": \"SYNTHETIC investigation signal. Batch: \"}, {\"name\": \"batch\", \"kind\": \"AttributeReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"1ca923b9-c970-4951-9be0-705e09ccca24\"}]}, {\"type\": \"string\", \"value\": \". Distinct batteries returned within 15 minutes: \"}, {\"name\": \"count\", \"kind\": \"AttributeReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"e99ec9c8-d7cf-4d50-921d-58709ab70780\"}]}, {\"type\": \"string\", \"value\": \". Demo run: \"}, {\"name\": \"run\", \"kind\": \"AttributeReference\", \"type\": \"complex\", \"arguments\": [{\"name\": \"entityId\", \"type\": \"string\", \"value\": \"1d033e4d-b22c-4788-be93-85b66b762098\"}]}, {\"type\": \"string\", \"value\": \". Review return initiators and inspection evidence. This correlation is not proof of a manufacturing defect.\"}]}, {\"name\": \"additionalInformation\", \"type\": \"array\", \"values\": []}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]

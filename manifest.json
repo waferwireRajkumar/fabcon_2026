@@ -1,0 +1,321 @@
+{
+  "project": "Battery Returns Intelligence",
+  "partner": "Waferwire",
+  "repository": "https://github.com/waferwireRajkumar/fabcon_2026",
+  "synthetic_data": true,
+  "delivery": "final consolidated copy",
+  "authentication_material_included": false,
+  "file_count": 62,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 94,
+      "sha256": "6de2ddb033284ecaa69c1c51f62d66c7aa326968aee9235c1928eeded704add4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2133,
+      "sha256": "c7a6d76128b8cae8b6c979116a02fbf15247fab60a31c218166c6f03d099aa1e"
+    },
+    {
+      "path": "Start-Companion.cmd",
+      "bytes": 162,
+      "sha256": "a6017a98bf63d590ac730ebe260643c1a99b4d96c194a3373101dfd7239db0bf"
+    },
+    {
+      "path": "app\\companion\\capacity_cost.py",
+      "bytes": 5728,
+      "sha256": "543f10927db4a6ca1df44598148d93b1757307a55b53936ae35bbc4f5282b069"
+    },
+    {
+      "path": "app\\companion\\chat_engine.py",
+      "bytes": 11407,
+      "sha256": "48599f4b4789bef9be9694ad68c9d52700bee8fed11dbe61bdad47edfccb73fc"
+    },
+    {
+      "path": "app\\companion\\gold_data.py",
+      "bytes": 11912,
+      "sha256": "8e209aa473b4753b15d638fe841b43de30ad81a3c7ac3f0321b9a8d689a7cb0f"
+    },
+    {
+      "path": "app\\companion\\package-lock.json",
+      "bytes": 17689,
+      "sha256": "760a3b7a215067cc77d72a924bfe27287747fae607369f6ba91b2a9c94c193d7"
+    },
+    {
+      "path": "app\\companion\\package.json",
+      "bytes": 424,
+      "sha256": "76cd2af3021f7c0caa21d60459b67565780aa6ee6ce571122a72f05770985817"
+    },
+    {
+      "path": "app\\companion\\public\\app.js",
+      "bytes": 110928,
+      "sha256": "ccc83a35ba97dbdefcba33578db3e7bc37f6871941ccdfcd0a97d8f7d89ea08e"
+    },
+    {
+      "path": "app\\companion\\public\\index.html",
+      "bytes": 6931,
+      "sha256": "46ce5c372cfd97e159513e361118d2bb09afd67aba709f3c1ac9a9a31a1020a0"
+    },
+    {
+      "path": "app\\companion\\public\\styles.css",
+      "bytes": 10302,
+      "sha256": "959f0ced1a5915aaa13caa608f8dc3a31d7d4a2a9c3124dd7f7baff67a829ff8"
+    },
+    {
+      "path": "app\\companion\\requirements.txt",
+      "bytes": 28,
+      "sha256": "d611619a877efe5f781fec92510b97d7b317cda50aadbe35cba6aa00bfd73dd2"
+    },
+    {
+      "path": "app\\companion\\retail-prices-INR.json",
+      "bytes": 168688,
+      "sha256": "903f9622437ff93fe4954ad87becb846688493c4a48de4fc505de369b3d42eaf"
+    },
+    {
+      "path": "app\\companion\\retail-prices-USD.json",
+      "bytes": 166557,
+      "sha256": "68af4840664955ca89a33996f9f20f7b1768f5140c41b02f541724d21865a1cd"
+    },
+    {
+      "path": "app\\companion\\server.py",
+      "bytes": 11885,
+      "sha256": "885a14e6b17dbeead3ea88b1c475dbc3d5bf8ae55023a5f7875c13f70a234eb9"
+    },
+    {
+      "path": "app\\companion\\tests\\browser.mjs",
+      "bytes": 9132,
+      "sha256": "cd86ceae3cbbc0e7e2b6b1de7daf49d4a90e69ad3dea07634eb7d37cf7c04dfc"
+    },
+    {
+      "path": "app\\companion\\tests\\test_companion.py",
+      "bytes": 10121,
+      "sha256": "71e02b5f9b401383dca02ae9db59dc9939b97edffdda32bf04cc22ff5e5f8d17"
+    },
+    {
+      "path": "app\\companion\\web\\app.js",
+      "bytes": 14966,
+      "sha256": "c87d53c6afd7fe0c4a6efd1723d004032bff5cd978d19dd43bbb23f89609d4d8"
+    },
+    {
+      "path": "app\\config\\expected.json",
+      "bytes": 3888,
+      "sha256": "151372dcecae8310b7832828a81099a3c41bafd0593a705eb0f9ef6804975c0a"
+    },
+    {
+      "path": "app\\fabric_api.py",
+      "bytes": 4332,
+      "sha256": "3c523e66a0f02f02c08de6b5c63f2445ed3f3a40b4b79be40db67174d91752b0"
+    },
+    {
+      "path": "data\\landing\\batteries.csv",
+      "bytes": 2146004,
+      "sha256": "0387b68105ea3e53fa335f0a6580c4afdde1aea5bfa41ad8d13393145c469b94"
+    },
+    {
+      "path": "data\\landing\\products.csv",
+      "bytes": 555,
+      "sha256": "adfcde7c1760654a4fb778d98df543ee77a20c41cfddafb23be6b22628f5587a"
+    },
+    {
+      "path": "data\\landing\\return_events.json",
+      "bytes": 38031638,
+      "sha256": "f663a7e5b120aec3993d6df353bcfe88c157099375230370df3389bdc8d774b4"
+    },
+    {
+      "path": "data\\landing\\shipments.csv",
+      "bytes": 1643621,
+      "sha256": "56b6ab9e27bfd04ebb09e560bd2ce1435713e8414ea8d7ad24b170b70d530e1a"
+    },
+    {
+      "path": "docs\\PROJECT_GUIDE.md",
+      "bytes": 7683,
+      "sha256": "bfe66fb5d0ba62fe726e3d9013002d476df2e46400a0075736ccdda1f2619537"
+    },
+    {
+      "path": "evidence\\dashboard\\completion.json",
+      "bytes": 1554,
+      "sha256": "3553ad8c5774687d8e7c10a840ccdb690025993398e9ca7add59915bf1c28f26"
+    },
+    {
+      "path": "evidence\\dashboard\\pricing-matrix-verification.json",
+      "bytes": 207,
+      "sha256": "4d0482793354edf41314211a3e1f34970d09eb7952e458df836b44788142b562"
+    },
+    {
+      "path": "evidence\\dashboard\\retail-pricing-basis.json",
+      "bytes": 3275,
+      "sha256": "26fe0cf7c6983b45b302b6f97b1e31580c3a7e8ad452c029cd17be7a390db158"
+    },
+    {
+      "path": "evidence\\partner-kit-update-verification.json",
+      "bytes": 890,
+      "sha256": "46bbbecd2d96e0d50414b3057c444f2562cd087a22789a685790a297b7ef6e0c"
+    },
+    {
+      "path": "evidence\\pipeline\\completion.json",
+      "bytes": 3496,
+      "sha256": "7157fabb462cd269a72df97ce11322da9cae84c79bd98611da6aa2f620c81f10"
+    },
+    {
+      "path": "evidence\\video-verification-usecase.json",
+      "bytes": 2614,
+      "sha256": "3430648d736cb0f35202081da2215d7a6c7fd5444dbf5cdfc139e864e32daa05"
+    },
+    {
+      "path": "evidence\\video-verification-walkthrough.json",
+      "bytes": 2852,
+      "sha256": "851f0b04f953468914fdae154f45e1073374aaf022c3e466bd08671c0b8e11c8"
+    },
+    {
+      "path": "fabric\\dashboard\\BatteryReturnsDashboard.Native.json",
+      "bytes": 30793,
+      "sha256": "833252c5022ac7f9a20f51ad7f9c761e72b0acf8b67477490e1cd41a7f9b44b4"
+    },
+    {
+      "path": "fabric\\eventhouse\\serving-schemas.json",
+      "bytes": 5772,
+      "sha256": "a56ec7ed8de74b1b56adbde974e108a088eb3d4a68492accab37dc555cdfc948"
+    },
+    {
+      "path": "fabric\\eventhouse\\serving-tables.kql",
+      "bytes": 1385,
+      "sha256": "0f72299e3097ca8bf3809b8e71c66873fd34d8e485d4a2d1fd89d14bd2e73264"
+    },
+    {
+      "path": "fabric\\live\\activator\\.platform",
+      "bytes": 330,
+      "sha256": "65acc04abd9933170f6b5d708d58242043943fbe64a9ce8f3ae421eb3684d398"
+    },
+    {
+      "path": "fabric\\live\\activator\\ReflexEntities.json",
+      "bytes": 11730,
+      "sha256": "f345996273bad3b7934346963504bc5cc338b97d38d24f2349d530941fc24edd"
+    },
+    {
+      "path": "fabric\\live\\activator\\definition.json",
+      "bytes": 16124,
+      "sha256": "3576737b59bfa812d196d2e8993a44dd414348354526ffce070656e064aa8ebd"
+    },
+    {
+      "path": "fabric\\live\\eventstream\\.platform",
+      "bytes": 319,
+      "sha256": "6a10fe4d17e88e7b7abd9567939b6db82f0d3ae4a69d4044c072450cd9791e09"
+    },
+    {
+      "path": "fabric\\live\\eventstream\\definition.json",
+      "bytes": 7594,
+      "sha256": "3e110e933b25d277fb6ff7b2443254bafd43ed604f82754f5a55a9638a173c22"
+    },
+    {
+      "path": "fabric\\live\\eventstream\\eventstream.json",
+      "bytes": 5133,
+      "sha256": "7257d7e055a056631a12514e9432309d838477e239bfeae3f26630599287c641"
+    },
+    {
+      "path": "fabric\\live\\eventstream\\eventstreamProperties.json",
+      "bytes": 126,
+      "sha256": "3ae7d46a664a9284802e96a901c8902558a4fffe9900c0d44353a4b26a162634"
+    },
+    {
+      "path": "fabric\\live\\live-export-report.json",
+      "bytes": 327,
+      "sha256": "a8d48d8ffd330049db85444431000c742b20f335a4a75f76e30228ad34f6c09e"
+    },
+    {
+      "path": "fabric\\medallion\\BatteryReturns_Medallion_Processor.ipynb",
+      "bytes": 30179,
+      "sha256": "2e38e8b7642fefcde2bedee0f5035541d73495522d1054ec73a9e712389f5cac"
+    },
+    {
+      "path": "fabric\\medallion\\expected.json",
+      "bytes": 3888,
+      "sha256": "151372dcecae8310b7832828a81099a3c41bafd0593a705eb0f9ef6804975c0a"
+    },
+    {
+      "path": "fabric\\medallion\\gold_serving_function.kql",
+      "bytes": 479,
+      "sha256": "77aaa6fade467cf39ad4cd0c4d97818087f7a25e9229c4d114b6b4fcf789d787"
+    },
+    {
+      "path": "fabric\\medallion\\pipeline-content.json",
+      "bytes": 4266,
+      "sha256": "c4481ffda56f95eb8f4f939a6ef5ed29d915edc2ae510b2540ef2f14d81fd763"
+    },
+    {
+      "path": "media\\Battery_Returns_Pipeline_Walkthrough.mp4",
+      "bytes": 6162655,
+      "sha256": "c7a958ad84681c113fc492ef9c6afbe1b51b82775dc11eb7288a4ac2f7c7dbd7"
+    },
+    {
+      "path": "media\\Battery_Returns_UseCase_Explainer.mp4",
+      "bytes": 5816916,
+      "sha256": "07b68596032ca95b9070986cd2ebf4f8f277de2cd1954c543117bbf952902c52"
+    },
+    {
+      "path": "media\\screenshots\\ai-evidence.png",
+      "bytes": 43055,
+      "sha256": "66a1815c59846ce38eb39ae81774ef554918e08c1cfd919e75091e9ef54dd693"
+    },
+    {
+      "path": "media\\screenshots\\dashboard.png",
+      "bytes": 120848,
+      "sha256": "0fc0f6127de1e3b002c955125e367d0b34f40710461a657926a756deb6c8c539"
+    },
+    {
+      "path": "media\\screenshots\\fabric-dashboard.png",
+      "bytes": 150272,
+      "sha256": "9d655a16aee85976dfb819385d262948bfa615fa3a7fd46770ce539230ff61e6"
+    },
+    {
+      "path": "media\\screenshots\\fabric-database.png",
+      "bytes": 134440,
+      "sha256": "9e70ceed9c7bbf0884ad6d6fd3c2a405f6707b95cc5c24b377d1f400be66642d"
+    },
+    {
+      "path": "media\\screenshots\\fabric-lakehouse.png",
+      "bytes": 101824,
+      "sha256": "9da39c25f7909e38f35502136b3468a1de25ceb6c5a9a79c6fca0ae8520d74fa"
+    },
+    {
+      "path": "media\\screenshots\\fabric-pipeline.png",
+      "bytes": 98093,
+      "sha256": "f22c6eec463a91074663798cb17e78c06fe4341cfda31e1fa3df16b95094a6e1"
+    },
+    {
+      "path": "media\\screenshots\\fabric-workspace.png",
+      "bytes": 106140,
+      "sha256": "1a9b489e835c76f5c827a3f923cee133bb53be8fff33f84e25d2e3f6effc59be"
+    },
+    {
+      "path": "media\\screenshots\\github-repository.png",
+      "bytes": 61723,
+      "sha256": "6036fd948e2ab312fdc8e4a0eca38ea86a82d3ce49a37d4a0242f0282e88cf96"
+    },
+    {
+      "path": "presentation\\Battery_Returns_UseCase_Presentation.pdf",
+      "bytes": 293620,
+      "sha256": "3ec771824c4c4363806df96fdddc2bd127c35d23549130917bbb54c14fdea4f5"
+    },
+    {
+      "path": "presentation\\Battery_Returns_UseCase_Presentation.pptx",
+      "bytes": 153526,
+      "sha256": "4aa8b3c463d8ca45e2ff2faadb5265214142f4865e7d8dbb3af22537c19c6913"
+    },
+    {
+      "path": "presentation\\Waferwire_Partner_Hack_Kit.pptx",
+      "bytes": 21458947,
+      "sha256": "8b7cbd2edac04f6024b327e1b34429753af81d45b1da0c4a60a8f8f70eccb42b"
+    },
+    {
+      "path": "src\\live\\battery_returns_queries.kql",
+      "bytes": 4693,
+      "sha256": "612fbd8276957ee0167e4a3497647b7430d33556101b5aa39888a10b47559ccc"
+    },
+    {
+      "path": "src\\live\\battery_returns_simulator.py",
+      "bytes": 7217,
+      "sha256": "0e6ad0e919ce64dfcf96b7443343086be0ae03a5c416ba146cbd3491eef4d23e"
+    }
+  ]
+}

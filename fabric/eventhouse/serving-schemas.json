@@ -1,0 +1,252 @@
+{
+  "ReturnsGoldRaw": {
+    "Name": "ReturnsGoldRaw",
+    "OrderedColumns": [
+      {
+        "Name": "data_label",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "demo_run_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "event_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "event_time",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "event_type",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "revision",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "return_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "return_registered_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "battery_serial",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "product_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "batch_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "shipment_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "originator_type",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "originator_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "submitted_by_type",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "submitted_by_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "receiving_warehouse_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "country",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "reported_reason",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "inspection_finding",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "return_status",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "product_name",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "battery_technology",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "warranty_months",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "factory_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "distributor_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "retailer_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "manufactured_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "shipped_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "delivered_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "invoice_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "warranty_expires_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "warranty_status",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "resolution_action",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "publish_id",
+        "Type": "System.String",
+        "CslType": "string"
+      }
+    ]
+  },
+  "ReturnsGoldCommits": {
+    "Name": "ReturnsGoldCommits",
+    "OrderedColumns": [
+      {
+        "Name": "publish_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "published_at",
+        "Type": "System.DateTime",
+        "CslType": "datetime"
+      },
+      {
+        "Name": "data_label",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "dataset_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "bronze_events",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "quarantined_events",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "valid_raw_events",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "silver_events",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "replays_removed",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "gold_cases",
+        "Type": "System.Int64",
+        "CslType": "long"
+      },
+      {
+        "Name": "gold_sha256",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "pipeline_run_id",
+        "Type": "System.String",
+        "CslType": "string"
+      },
+      {
+        "Name": "source_manifest_sha256",
+        "Type": "System.String",
+        "CslType": "string"
+      }
+    ]
+  }
+}

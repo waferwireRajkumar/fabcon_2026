@@ -1,0 +1,115 @@
+// Run ONE numbered block at a time in the KQL database.
+// The Eventstream destination wizard creates ReturnsRaw and its JSON mapping.
+// Before block 2, verify datetime/long types using block 1.
+
+// 1. Ingestion and schema checks. Select/run each statement separately.
+ReturnsRaw | getschema
+
+ReturnsRaw
+| summarize RawRows=count() by demo_run_id, event_type
+
+ReturnsRaw
+| project event_time, return_registered_at, demo_run_id, return_id,
+          revision, batch_id, originator_type, submitted_by_type
+| take 10
+
+// 2. Create this function once. Do not select/run with other blocks.
+// Higher revision wins regardless of delivery order. Replayed revision 1 is
+// identical. Revisions must be monotonically increasing per return.
+.create-or-alter function with (folder = "BatteryReturns") ReturnsLatest() {
+    ReturnsRaw
+    | where data_label == "SYNTHETIC"
+    | summarize arg_max(revision, *) by demo_run_id, return_id
+}
+
+// 3. Create this function once; run independently.
+// Keep zero-count groups in the output so Activator can see state changes.
+.create-or-alter function with (folder = "BatteryReturns") BatchSignals() {
+    ReturnsLatest()
+    | where isnotempty(batch_id) and isnotempty(battery_serial)
+    | summarize last_registered_at=max(return_registered_at)
+        by demo_run_id, batch_id, battery_serial
+    | summarize affected_batteries=countif(
+        last_registered_at between (ago(15m) .. now())
+      ) by demo_run_id, batch_id
+    | extend incident_key=strcat(demo_run_id, "|", batch_id),
+             is_cluster=affected_batteries >= 3,
+             evaluated_at=now()
+    | project incident_key, demo_run_id, batch_id,
+              affected_batteries, is_cluster, evaluated_at
+}
+
+// 4. Dashboard: current return cases. Replace PASTE_RUN_ID in each block.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize ReturnCases=count()
+
+// 5. Dashboard: who initiated the return? This is not the submitting party.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize ReturnCases=count() by originator_type
+| order by ReturnCases desc
+
+// 6. Dashboard: reported reasons, NOT established root causes.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize ReturnCases=count() by reported_reason
+| order by ReturnCases desc
+
+// 7. Dashboard AND alert input: one current signal per run/batch.
+// Do NOT add "| where is_cluster": Activator needs below-threshold samples too.
+BatchSignals()
+| where demo_run_id == "PASTE_RUN_ID"
+
+// 8. Dashboard: evidence table. One row per current return case.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| project return_id, battery_serial, batch_id, shipment_id, country,
+          originator_type, originator_id, submitted_by_type, submitted_by_id,
+          reported_reason, inspection_finding, return_status,
+          return_registered_at, event_time, revision
+| order by return_registered_at desc
+
+// 9. Dashboard: missing origin traceability.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize UnknownOriginCases=countif(
+    originator_type == "Unknown" or isempty(originator_id))
+
+// 10. Dashboard: confirmed inspection findings remain separate from reports.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize ReturnCases=count() by inspection_finding
+
+// 11. Acceptance check after all four simulator phases.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize ReturnCases=count(),
+    UnknownOriginCases=countif(originator_type == "Unknown"),
+    InspectedCases=countif(return_status == "Inspected")
+
+// 12. Acceptance check: 10 raw rows, 9 unique event IDs after one complete run.
+// These numbers rise on transport replay; the current case count must stay 8.
+ReturnsRaw
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize RawRows=count() by event_id
+| summarize RawRows=sum(RawRows), UniqueEventIds=count()
+
+// 13. Explain the duplicate without counting it as another returned battery.
+ReturnsRaw
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize Copies=count() by event_id
+| where Copies > 1
+
+// 14. Confirm the inspection changed a case, not the original return time.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| where return_id endswith "-RET-004"
+| project return_id, revision, return_registered_at, event_time,
+          reported_reason, inspection_finding, return_status
+
+// 15. Optional evidence timeline: distinct case registrations per minute.
+ReturnsLatest()
+| where demo_run_id == "PASTE_RUN_ID"
+| summarize ReturnCases=count() by bin(return_registered_at, 1m)
+| order by return_registered_at asc
